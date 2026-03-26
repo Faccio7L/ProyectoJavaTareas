@@ -1,0 +1,74 @@
+package JavaProject;
+
+public class Tarea {
+	private int id;
+    private String nombre;
+    private String descripcion;
+    private int prioridad; 
+    private String estado; 
+
+    
+    public void actualizarEstado(String nuevoEstado) {
+    	//cambiar estado de las tareas.
+    	
+    	
+    }
+    
+    public void TareaCompleta() {
+    	//Se invoca desde actualizar estado si se completo la tarea.
+    	
+    }
+    
+    
+    public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+	public int getPrioridad() {
+		return prioridad;
+	}
+
+
+	public void setPrioridad(int prioridad) {
+		this.prioridad = prioridad;
+	}
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
+
+}
