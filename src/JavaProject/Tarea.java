@@ -6,18 +6,17 @@ public class Tarea {
     private String descripcion;
     private int prioridad; 
     private String estado; 
+    private String dev;
 
     
-    public void actualizarEstado(String nuevoEstado) {
-    	//cambiar estado de las tareas.
-    	
-    	
-    }
-    
-    public void TareaCompleta() {
-    	//Se invoca desde actualizar estado si se completo la tarea.
-    	
-    }
+    public String getDev() {
+		return dev;
+	}
+
+	public void setDev(String dev) {
+		this.dev = dev;
+	}
+
     
     
     public int getId() {
@@ -68,7 +67,5 @@ public class Tarea {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
-
 
 }

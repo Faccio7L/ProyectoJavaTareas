@@ -4,13 +4,6 @@ public class Desarrollador {
 	private String nombre;
     private boolean ocupado; 
     
-    
-    public void cambiarDisponibilidad(boolean estaOcupado) {
-    	//cambia estado sobre si esta ocupado o no. se invoca desde asignar desarrollador a tarea,eliminar tarea o tarea completa
-    	
-    
-    	
-    }
 
 
 	public String getNombre() {
