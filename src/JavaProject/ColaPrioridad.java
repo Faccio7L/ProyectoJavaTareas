@@ -16,12 +16,27 @@ public class ColaPrioridad {
     }
 
     public void encolar(Tarea t, int prioridad) {
-        // FALTA VER LA LOGICA PARA VER COMO ORDENARLO.
+     int pos = indice;
+    for (int i = 0; i < indice; i++) {
+        if (prioridad > prioridades[i]) {
+            pos = i;
+            i = indice;
+        }
+    }
+    for (int i = indice; i > pos; i--) {
+        elementos[i] = elementos[i - 1];
+        prioridades[i] = prioridades[i - 1];
+    }
+    elementos[pos] = t;
+    prioridades[pos] = prioridad; 
         indice++;
     }
 
     public void desencolar() {
-        
+        for(int i = 0; i < indice; i++) {
+            elementos[i] = elementos[i + 1];
+            prioridades[i] = prioridades[i + 1];
+        }
         indice--;
     }
 
@@ -33,4 +48,7 @@ public class ColaPrioridad {
     public boolean vacia() {
         return (indice == 0);
     }
+    public int prioridad() {
+		return prioridades[0];
+	}
 }
