@@ -1,7 +1,8 @@
 package JavaProject;
 
 
-public class ColaPrioridad {
+public class ColaPrioridad implements ColaPrioridadTDA {
+
     
     //atributos.
     private Tarea[] elementos;
