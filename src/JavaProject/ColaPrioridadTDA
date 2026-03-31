@@ -14,11 +14,11 @@ public interface ColaPrioridadTDA {
     /**
      * inicializada
      */
-    public boolean estaVacia();
+    public boolean vacia();
     /**
      * no vacía
      */
-    public Tarea primero();
+    public Tarea verPrimero();
     /**
      * no vacía
      */
