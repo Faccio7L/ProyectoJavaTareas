@@ -1,6 +1,15 @@
 package JavaProject;
 
 
+interface ColaPrioridadTDA {
+    void inicializarCola();
+    void encolar(Tarea t, int prioridad);
+    void desencolar();
+    Tarea verPrimero();
+    boolean vacia();
+    int prioridad();
+}
+
 public class ColaPrioridad implements ColaPrioridadTDA {
 
     
