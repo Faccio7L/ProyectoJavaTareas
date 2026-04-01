@@ -1,19 +1,31 @@
 package JavaProject;
 
+
+
 public class Tarea {
 	private int id;
     private String nombre;
     private String descripcion;
     private int prioridad; 
     private String estado; 
-    private String dev;
-
+    private int dev;
+    private static int contadorId = 0; // static para que pueda ser usado por el constructor.
     
-    public String getDev() {
+    public Tarea() {
+    					// CONSTRUCTOR, SE GENERA con cada objeto tarea.
+        contadorId++;         
+     	 
+     }  
+    
+     public int getContadorId() {
+    	 return contadorId;
+     }
+    
+    public int getDev() {
 		return dev;
 	}
 
-	public void setDev(String dev) {
+	public void setDev(int dev) {
 		this.dev = dev;
 	}
 
@@ -25,6 +37,7 @@ public class Tarea {
 
 
 	public void setId(int id) {
+		
 		this.id = id;
 	}
 

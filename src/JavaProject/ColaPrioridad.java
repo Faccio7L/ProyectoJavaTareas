@@ -8,6 +8,7 @@ interface ColaPrioridadTDA {
     Tarea verPrimero();
     boolean vacia();
     int prioridad();
+    //TIENE QUE ESTAR EN OTRA CLASE LA INTERFAZ!!! 
 }
 
 public class ColaPrioridad implements ColaPrioridadTDA {
@@ -17,6 +18,7 @@ public class ColaPrioridad implements ColaPrioridadTDA {
     private Tarea[] elementos;
     private int[] prioridades;
     private int indice;
+    
 
     
     public void inicializarCola() {
@@ -26,6 +28,7 @@ public class ColaPrioridad implements ColaPrioridadTDA {
     }
 
     public void encolar(Tarea t, int prioridad) {
+    if (elementos.length <= 99) {
      int pos = indice;
     for (int i = 0; i < indice; i++) {
         if (prioridad > prioridades[i]) {
@@ -41,7 +44,11 @@ public class ColaPrioridad implements ColaPrioridadTDA {
     prioridades[pos] = prioridad; 
         indice++;
     }
-
+    
+    else {
+    	System.out.println("Has llegado al limite de tareas.");
+    }
+    }
     public void desencolar() {
         for(int i = 0; i < indice; i++) {
             elementos[i] = elementos[i + 1];

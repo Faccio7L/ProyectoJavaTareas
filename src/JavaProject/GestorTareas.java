@@ -1,5 +1,7 @@
 package JavaProject;
 
+
+
 public class GestorTareas {
 	//aca va a estar el conjunto de desarrollares y el diccionario y la cola.
 	ColaPrioridad colaPendientes;
@@ -16,13 +18,35 @@ public class GestorTareas {
         // Punto de entrada desde el main
         // Invoca a: crearTarea, eliminarTarea, actualizarEstado, listarTareasPorEstado. RECIBE UN NUMERO SEGUN LA FUNCION A INVOCAR.
 		if (n == 1) {
-		System.out.println("Texto de prueba");
-    }}
+		crearTarea();
+    }
+}
 	
 	
 
-    public void crearTarea(int id, String nombre, String desc, int prioridad) {
-        // Invoca a: asignarDesarrolladorATarea.
+    public static void crearTarea() {
+    	// Invoca a: asignarDesarrolladorATarea.
+    	Tarea tarea = new Tarea(); 
+    	tarea.setId(tarea.getContadorId());
+    	
+    	System.out.println("Ingrese el nombre de la tarea:");
+    	String nombre = scanner.InicializarScannerSTR();
+    	tarea.setNombre(nombre);
+    	
+    	System.out.println("Escriba una breve descripcion:");
+    	String descripcion = scanner.InicializarScannerSTR();
+    	tarea.setDescripcion(nombre);
+    	
+    	System.out.println("Ingrese una prioridad: 1 baja,2 media, 3 alta");
+    	int prioridad = scanner.InicializarScannerINT();
+    	if (prioridad >= 1 && prioridad <= 3) {
+    		tarea.setPrioridad(prioridad);	
+    	}
+    	
+    	tarea.setEstado("Incompleta");
+    	int dev = asignarDesarrolladorATarea(tarea.getId()); //devolveria el id de dev, lo podriamos hacer con nombre tambien.
+    	tarea.setDev(dev);
+        
     }
 
     public void eliminarTarea(int id) {
@@ -45,7 +69,7 @@ public class GestorTareas {
     									// LOS SIGUIENTES METODOS USA OBJETOS DESARROLLADOR!!!!!!!!!
     
 
-    public void asignarDesarrolladorATarea(int idTarea, String nombreDev) {
+    public static int asignarDesarrolladorATarea(int idTarea) {
         // Busca en el Set y vincula a la Tarea
         // Invoca a: cambiarDisponibilidad
     }

@@ -1,5 +1,7 @@
 package JavaProject;
 
+
+
 public class Menu {
 	
 	static GestorTareas gestor = new GestorTareas(); //static para que pueda ser usado  por cualquier metodo .
@@ -14,9 +16,9 @@ public class Menu {
             try {
             	
                 System.out.println("Seleccione una opción");
-                int num = scanner.InicializarScanner();
+                int num = scanner.InicializarScannerINT();
                 
-                if (num>=1 && num<=5){
+                if (num>=0 && num<=5){
                     return num;
                 }
                 else {
@@ -37,7 +39,8 @@ public class Menu {
     	        "2. Eliminar Tarea",
     	        "3. Actualizar Estado",
     	        "4. Listar Tareas por Estado",
-    	        "5. Salir"
+    	        "5.Modificar Desarrolladores.",
+    	        "0. Salir"
     	        };
 
         for (String o: opciones){ 
@@ -45,20 +48,14 @@ public class Menu {
     	}
         
         int seleccion = ObtenerOpcionValida();
+        
+        if (seleccion >= 1 && seleccion <= 5) {
+        	
+        	gestor.gestionarTareas(seleccion);
+        }
 
-        if (seleccion==1) {
-			gestor.gestionarTareas(1);
-    	}
-        else if (seleccion==2) {
-			gestor.gestionarTareas(2);
-    	}
-        else if (seleccion==3) {
-            gestor.gestionarTareas(3);
-    	}
-        else if (seleccion==4) {
-			gestor.gestionarTareas(4);
-	    }
-        else if (seleccion==5) {
+        
+        else  {//no hace falta un else if por la validacion previa.
 	        System.out.println("Hasta luego!!!!");
         }
     }

@@ -2,10 +2,15 @@ package JavaProject;
 import java.util.Scanner;
 
 public class scanner {
-    private static Scanner sc = new Scanner(System.in); 
+    static Scanner sc = new Scanner(System.in); 
  // como es static se crea el objeto al invocar cualquier metoodo de la clase.
-    public static int InicializarScanner() {
+    public static int InicializarScannerINT() {
         int x = sc.nextInt();
+        sc.nextLine(); 
+        return x;
+    }
+    public static String InicializarScannerSTR() {
+    	String x = sc.nextLine();
         sc.nextLine(); 
         return x;
     }
