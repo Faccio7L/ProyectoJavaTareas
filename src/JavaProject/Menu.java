@@ -5,9 +5,12 @@ package JavaProject;
 public class Menu {
 	
 	static GestorTareas gestor = new GestorTareas(); //static para que pueda ser usado  por cualquier metodo .
+	static ConjuntoTDA conjunto = new ConjuntoImplementacionDevs();
+    
    
     public static void main(String[] args) {
     	
+        
     	InicializarMenu();
     }
     
@@ -53,6 +56,7 @@ public class Menu {
         	
         	gestor.gestionarTareas(seleccion);
         }
+        
 
         
         else  {//no hace falta un else if por la validacion previa.

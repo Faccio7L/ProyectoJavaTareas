@@ -1,14 +1,13 @@
 package JavaProject;
-
-public interface ConjuntoTDA{
+public interface ConjuntoTDA {
 	
-	void inicializarConjunto();
-	void Agregar(int x); // podrian ser los DNI de los programadores.
-	int Elegir();
-	boolean COnjuntoVacio();
-	void Sacar(int x);
-	boolean Pertenece(int x);
-	
+    void InicializarConjunto();
+    void Agregar(Desarrollador d);
+    Desarrollador Elegir();
+    boolean ConjuntoVacio();
+    void Sacar(Desarrollador d);
+    boolean Pertenece(Desarrollador d);
+   
 }
 
 
