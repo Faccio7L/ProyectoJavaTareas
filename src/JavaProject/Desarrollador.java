@@ -3,7 +3,18 @@ package JavaProject;
 public class Desarrollador {
 	private String nombre;
     private boolean ocupado; 
+    private int dni;
     
+
+
+	public int getDni() {
+		return dni;
+	}
+
+
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
 
 
 	public String getNombre() {
@@ -16,7 +27,7 @@ public class Desarrollador {
 	}
 
 
-	public boolean isOcupado() {
+	public boolean setOcupado() {
 		return ocupado;
 	}
 

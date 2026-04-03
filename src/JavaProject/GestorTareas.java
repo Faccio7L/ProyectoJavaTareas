@@ -5,26 +5,30 @@ package JavaProject;
 public class GestorTareas {
 	
 	ColaPrioridad colaPendientes;
-	static ConjuntoTDA conjunto = new ConjuntoImplementacionDevs();
+	static ConjuntoTDA conjunto = new ConjuntoImplementacionDevs(); //se crea conjunto al llamar clase GestorTareas.
 	
 	public GestorTareas() {
-		//CONSTRUCTOR, INICIALIZAMOS DESARROLLADORES,DICCIONARIO Y COLA.
+		//CONSTRUCTOR, INICIALIZAMOS DESARROLLADORES,DICCIONARIO Y COLA de MANERA AUTOMATICA.
 		//HARDCODEO DE DESARROLLADORES.
 		this.colaPendientes = new ColaPrioridad();
 		this.colaPendientes.inicializarCola();
+		
 		conjunto.InicializarConjunto();
 		
 		Desarrollador d1 = new Desarrollador();
         d1.setNombre("Juan");
         d1.setOcupado(false);
+        d1.setDni(67323492);
 
         Desarrollador d2 = new Desarrollador();
         d2.setNombre("Ana");
         d2.setOcupado(false);
+        d2.setDni(3231323);
 
         Desarrollador d3 = new Desarrollador();
         d3.setNombre("luis");
         d3.setOcupado(false);
+        d3.setDni(47675046);
 
         
         conjunto.Agregar(d1);
@@ -98,12 +102,21 @@ public class GestorTareas {
 
     							// LOS SIGUIENTES METODOS USA OBJETOS DESARROLLADOR!!!!!!!!!
     public static void AdministrarDevs() {
-    	
-    	System.out.println("Ingrese 1 si desea ver los devs,2 si desea agregar,3 si desea eliminar:");
+    	while (true) {
+    	System.out.println("Ingrese 1 si desea ver los devs,2 si desea agregar,3 si desea eliminar,otro si desea salir.");
     	int op = scanner.InicializarScannerINT();
     	if (op == 1) {
     		verdevs();
     	}
+    	else if (op == 2) {
+    		
+    		agregardevs();
+    	}
+    	else{
+    		break;
+    		
+    	}
+    }
     }
     public static void verdevs() {
         ConjuntoTDA aux = new ConjuntoImplementacionDevs();
@@ -112,19 +125,40 @@ public class GestorTareas {
         while (!conjunto.ConjuntoVacio()) {
             Desarrollador d = conjunto.Elegir();
             System.out.println("Nombre:"+d.getNombre());
-            System.out.println("Disponible:"+(!d.isOcupado()));
-
+            System.out.println("Ocupado:"+d.setOcupado());
+            System.out.println("DNI: " +d.getDni());
             aux.Agregar(d);
-            conjunto.Sacar(d);
+            conjunto.Sacar(d.getDni());
      }
 
         //RESTAURAR!!!
         while (!aux.ConjuntoVacio()) {
             Desarrollador d = aux.Elegir();
             conjunto.Agregar(d);
-            aux.Sacar(d);
+            aux.Sacar(d.getDni());
   }
   }
+    public static void agregardevs() {
+    Desarrollador dev = new Desarrollador();
+    System.out.println("Ingrese el nombre del desarrollador:");
+    String nom = scanner.InicializarScannerSTR();
+    System.out.println("Ingrese su dni");
+    int num = scanner.InicializarScannerINT();
+    dev.setNombre(nom);
+    dev.setDni(num);
+    dev.setOcupado(false);
+    if( conjunto.Pertenece(dev)){
+    	System.out.println("DNI ya ingresado.");
+    }
+    else {
+    	conjunto.Agregar(dev);
+    	System.out.println("Dev ingresado correctamente!!!");
+    }
+    
+    	
+    
+    
+    }
 
     public static int asignarDesarrolladorATarea(int idTarea) {
         // Busca en el Set y vincula a la Tarea

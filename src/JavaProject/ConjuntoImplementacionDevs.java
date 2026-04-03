@@ -10,11 +10,18 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
     }
 
     public void Agregar(Desarrollador d) {
-        // Solo agregamos si el desarrollador no existe ya en el conjunto
+        
         if (!this.Pertenece(d)) {
-            devs[cant] = d;
-            cant++;
-        }
+            
+            if (cant < 100) {
+                devs[cant] = d;
+                cant++;   
+            }
+           
+            }
+        else {
+        	System.out.println("EL DNI ya pertence .No se pudo agregar");
+  }
     }
 
     public boolean ConjuntoVacio() {
@@ -27,23 +34,23 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
     }
 
     public boolean Pertenece(Desarrollador d) {
+    	//EVALUA EL DNI!!!
         int i = 0;
-        while (i < cant && !devs[i].equals(d)) {
+        while (i < cant && devs[i].getDni() != d.getDni()) {
             i++;
         }
         return (i < cant);
     }
 
-    public void Sacar(Desarrollador d) {
+    
+    public void Sacar(int dni) {
         int i = 0;
-        while (i < cant && !devs[i].equals(d)) {
+        while (i < cant && devs[i].getDni() != dni) {
             i++;
         }
-
+        
         if (i < cant) {
-            // PARA EVITAR HUECOS EN EL ARRAY
             devs[i] = devs[cant - 1];
-            devs[cant - 1] = null; 
             cant--;
         }
     }
