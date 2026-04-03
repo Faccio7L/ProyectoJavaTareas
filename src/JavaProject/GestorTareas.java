@@ -1,6 +1,6 @@
 package JavaProject;
 
-
+import com.sun.org.apache.xerces.internal.dom.DeferredNotationImpl;
 
 public class GestorTareas {
 	
@@ -112,6 +112,10 @@ public class GestorTareas {
     		
     		agregardevs();
     	}
+    	else if (op == 3) {
+    		
+    		eliminardevs();
+    	}
     	else{
     		break;
     		
@@ -121,12 +125,14 @@ public class GestorTareas {
     public static void verdevs() {
         ConjuntoTDA aux = new ConjuntoImplementacionDevs();
         aux.InicializarConjunto();
-
+        int contador = 1;
         while (!conjunto.ConjuntoVacio()) {
             Desarrollador d = conjunto.Elegir();
+            System.out.println("-----------" + contador + "----------");
             System.out.println("Nombre:"+d.getNombre());
             System.out.println("Ocupado:"+d.setOcupado());
             System.out.println("DNI: " +d.getDni());
+            contador++;
             aux.Agregar(d);
             conjunto.Sacar(d.getDni());
      }
@@ -155,10 +161,15 @@ public class GestorTareas {
     	System.out.println("Dev ingresado correctamente!!!");
     }
     
-    	
-    
+    }
+    public static void eliminardevs() {
+    	verdevs();
+    	System.out.println("Ingrese el dni del desarrollador que quiere eliminar:");
+    	int dni = scanner.InicializarScannerINT();
+    	conjunto.SacarYNotificar(dni);
     
     }
+    
 
     public static int asignarDesarrolladorATarea(int idTarea) {
         // Busca en el Set y vincula a la Tarea

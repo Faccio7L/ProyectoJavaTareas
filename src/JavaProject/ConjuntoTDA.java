@@ -6,6 +6,7 @@ public interface ConjuntoTDA {
     Desarrollador Elegir();
     boolean ConjuntoVacio();
     void Sacar(int dni);
+    void SacarYNotificar(int dni);
     boolean Pertenece(Desarrollador d);
    
 }

@@ -44,14 +44,36 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
 
     
     public void Sacar(int dni) {
+    	//SE USA PARA MOSTRAR DEVS.
         int i = 0;
-        while (i < cant && devs[i].getDni() != dni) {
+        while (i < cant && devs[i].getDni() != dni) { //mientras que i sea menor a la cantidad de desarrolladores y el dni sea distinto al dni pasado como parametro.
             i++;
         }
         
-        if (i < cant) {
+        if (i < cant) { //osea si encontro a i antes de terminar de recorrer todos los devs.
             devs[i] = devs[cant - 1];
             cant--;
+            
         }
+       
+        
+    }
+    
+    public void SacarYNotificar(int dni) {
+    	//SE USA NOTIFICAR CAMBIOS EN EL SET, YA QUE PUEDE PASAR COMO NO.
+        int i = 0;
+        while (i < cant && devs[i].getDni() != dni) { //mientras que i sea menor a la cantidad de desarrolladores y el dni sea distinto al dni pasado como parametro.
+            i++;
+        }
+        
+        if (i < cant) { //osea si encontro a i antes de terminar de recorrer todos los devs.
+            devs[i] = devs[cant - 1];
+            cant--;
+            System.out.println("Dev eliminado con exito!!!");
+        }
+        else {
+        	System.out.println("No encontrado.");
+        }
+        
     }
 }
