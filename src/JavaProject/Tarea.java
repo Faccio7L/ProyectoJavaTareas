@@ -8,7 +8,7 @@ public class Tarea {
     private String descripcion;
     private int prioridad; 
     private String estado; 
-    private int dev;
+    private Desarrollador dev;
     private static int contadorId = 0; // static para que pueda ser usado por el constructor.
     
     public Tarea() {
@@ -21,17 +21,19 @@ public class Tarea {
     	 return contadorId;
      }
     
-    public int getDev() {
+    public Desarrollador getDev() {
 		return dev;
 	}
 
-	public void setDev(int dev) {
-		this.dev = dev;
-	}
+	
 
     
     
-    public int getId() {
+    public void setDev(Desarrollador dev) {
+		this.dev = dev;
+	}
+
+	public int getId() {
 		return id;
 	}
 

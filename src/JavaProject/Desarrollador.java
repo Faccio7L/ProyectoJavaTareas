@@ -27,12 +27,13 @@ public class Desarrollador {
 	}
 
 
-	public boolean setOcupado() {
-		return ocupado;
-	}
+	// El GETTER: devuelve el estado actual
+    public boolean getOcupado() {
+        return ocupado;
+    }
 
-
-	public void setOcupado(boolean ocupado) {
-		this.ocupado = ocupado;
-	}
+    // El SETTER: recibe el nuevo estado y no devuelve nada
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
 }

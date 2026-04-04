@@ -43,8 +43,8 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
     }
 
     
-    public void Sacar(int dni) {
-    	//SE USA PARA MOSTRAR DEVS.
+    public void SacarPorDNI(int dni) {
+    	//SE USA PARA SACAR DEVS. SIN ESTRUCTURA AUXILIAR.
         int i = 0;
         while (i < cant && devs[i].getDni() != dni) { //mientras que i sea menor a la cantidad de desarrolladores y el dni sea distinto al dni pasado como parametro.
             i++;
@@ -57,6 +57,20 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
         }
        
         
+    }
+    public void Sacar(Desarrollador d) {
+    	//SE USA PARA ESTRUCTURAS AUXILIARES.
+        int i = 0;
+        
+        
+        while (i < cant && devs[i] != d) {
+            i++;
+        }
+        if (i < cant) {
+      devs[i] = devs[cant - 1];
+           
+            cant--;
+      }
     }
     
     public void SacarYNotificar(int dni) {

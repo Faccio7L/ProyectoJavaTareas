@@ -1,6 +1,6 @@
 package JavaProject;
 
-import com.sun.org.apache.xerces.internal.dom.DeferredNotationImpl;
+
 
 public class GestorTareas {
 	
@@ -78,9 +78,23 @@ public class GestorTareas {
     	}
     	
     	tarea.setEstado("Incompleta");
-    	int dev = asignarDesarrolladorATarea(tarea.getId()); //devolveria el id de dev, lo podriamos hacer con nombre tambien.
+    	Desarrollador dev = asignarDesarrolladorATarea(tarea);//devolveria el id de dev, lo podriamos hacer con nombre tambien.
+    	if (dev == null) {
+    		System.out.println("No hay desarrolladores disponibles.");
+    	}
+    	else {
     	tarea.setDev(dev);
-        
+        mostrartarea(tarea);
+    }}
+    
+    public static void mostrartarea(Tarea tarea) {
+    	Desarrollador d = tarea.getDev();
+    	System.out.println("El nombre de su tarea es: " + tarea.getNombre());
+    	System.out.println("Su descripcion es: " +  tarea.getDescripcion());
+    	System.out.println("SU prioridad es: " + tarea.getPrioridad());
+    	System.out.println("Su estado es:" + tarea.getEstado());
+    	System.out.println("Su desarrollador a cargo es: " + d.getNombre());
+    	
     }
 
     public void eliminarTarea(int id) {
@@ -130,18 +144,18 @@ public class GestorTareas {
             Desarrollador d = conjunto.Elegir();
             System.out.println("-----------" + contador + "----------");
             System.out.println("Nombre:"+d.getNombre());
-            System.out.println("Ocupado:"+d.setOcupado());
+            System.out.println("Ocupado:"+d.getOcupado());
             System.out.println("DNI: " +d.getDni());
             contador++;
             aux.Agregar(d);
-            conjunto.Sacar(d.getDni());
+            conjunto.SacarPorDNI(d.getDni());
      }
 
         //RESTAURAR!!!
         while (!aux.ConjuntoVacio()) {
             Desarrollador d = aux.Elegir();
             conjunto.Agregar(d);
-            aux.Sacar(d.getDni());
+            aux.SacarPorDNI(d.getDni());
   }
   }
     public static void agregardevs() {
@@ -171,14 +185,34 @@ public class GestorTareas {
     }
     
 
-    public static int asignarDesarrolladorATarea(int idTarea) {
-        // Busca en el Set y vincula a la Tarea
-        // Invoca a: cambiarDisponibilidad
-    	
-    	
-    }
+    public static Desarrollador asignarDesarrolladorATarea(Tarea tarea) {
+        // 1. Inicializamos el auxiliar
+        ConjuntoTDA aux = new ConjuntoImplementacionDevs();
+        aux.InicializarConjunto(); 
+        
+        Desarrollador devEncontrado = null;
+        
+        while (!conjunto.ConjuntoVacio()) {
+            Desarrollador actual = conjunto.Elegir();
+            conjunto.Sacar(actual);
+            
+            if (!actual.getOcupado() && devEncontrado == null) {
+                devEncontrado = actual;
+                devEncontrado.setOcupado(true); 
+                tarea.setDev(devEncontrado); }
+            
+            
+            aux.Agregar(actual); }
+        
+        while (!aux.ConjuntoVacio()) {
+            Desarrollador paraDevolver = (Desarrollador) aux.Elegir();
+            conjunto.Agregar(paraDevolver);
+           
+            aux.Sacar(paraDevolver);
+        }
+    return devEncontrado; 
+ }
 
-    
     public void cambiarDisponibilidad(String nombreDev, boolean estaOcupado) {
         // MÉTODO DE APOYO FINAL: Cambia el boolean 'ocupado' en el objeto del Set.
         // Es invocado por: asignarDesarrolladorATarea, eliminarTarea, TareaCompleta.
