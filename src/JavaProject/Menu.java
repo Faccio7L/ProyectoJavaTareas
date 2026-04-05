@@ -36,7 +36,7 @@ public class Menu {
     }
 
     public static void InicializarMenu(){
-
+    	while (true) {
         String[] opciones = {
     	        "1. Crear Tarea",
     	        "2. Eliminar Tarea",
@@ -61,6 +61,8 @@ public class Menu {
         
         else  {//no hace falta un else if por la validacion previa.
 	        System.out.println("Hasta luego!!!!");
+	        break;
+        }
         }
     }
 }

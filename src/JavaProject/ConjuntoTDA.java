@@ -9,7 +9,7 @@ public interface ConjuntoTDA {
     void SacarYNotificar(int dni);
     void SacarPorDNI(int dni);
     boolean Pertenece(Desarrollador d);
-    
+    boolean BuscarPorDNIDisponibilidad(int dni);
    
 }
 

@@ -9,13 +9,9 @@ public class Tarea {
     private int prioridad; 
     private String estado; 
     private Desarrollador dev;
-    private static int contadorId = 0; // static para que pueda ser usado por el constructor.
+    private static int contadorId = 1; // static para que pueda ser usado por el constructor y no solo por objetos Tarea.
     
-    public Tarea() {
-    					// CONSTRUCTOR, SE GENERA con cada objeto tarea.
-        contadorId++;         
-     	 
-     }  
+    
     
      public int getContadorId() {
     	 return contadorId;
@@ -28,7 +24,6 @@ public class Tarea {
 	
 
     
-    
     public void setDev(Desarrollador dev) {
 		this.dev = dev;
 	}
@@ -38,9 +33,10 @@ public class Tarea {
 	}
 
 
-	public void setId(int id) {
+	public void setId() {
 		
-		this.id = id;
+		this.id = contadorId;
+		contadorId++;
 	}
 
 

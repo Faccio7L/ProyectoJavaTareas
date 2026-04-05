@@ -40,6 +40,7 @@ public class GestorTareas {
 	public static void gestionarTareas(int n) {
         // Punto de entrada desde el main
         // Invoca a: crearTarea, eliminarTarea, actualizarEstado, listarTareasPorEstado. RECIBE UN NUMERO SEGUN LA FUNCION A INVOCAR.
+		
 		if (n == 1) {
 		crearTarea();
 		}
@@ -52,16 +53,9 @@ public class GestorTareas {
 	
 
     public static void crearTarea() {
-    	// Invoca a: asignarDesarrolladorATarea.
-    	/*
-    	if (ConjuntoVacio) {
-    		
-    		System.out.println("No hay desarrolladores disponibles, lo sentimos.");
-    		return
-    	}
-    	*/
+    	
     	Tarea tarea = new Tarea(); 
-    	tarea.setId(tarea.getContadorId());
+    	tarea.setId();
     	
     	System.out.println("Ingrese el nombre de la tarea:");
     	String nombre = scanner.InicializarScannerSTR();
@@ -88,17 +82,23 @@ public class GestorTareas {
     }}
     
     public static void mostrartarea(Tarea tarea) {
-    	Desarrollador d = tarea.getDev();
+    	Desarrollador d = tarea.getDev(); //tarea tiene como atributo objeto dev, dev tiene como atributo nombre.
     	System.out.println("El nombre de su tarea es: " + tarea.getNombre());
+    	System.out.println("SU id es:" + tarea.getId());
     	System.out.println("Su descripcion es: " +  tarea.getDescripcion());
     	System.out.println("SU prioridad es: " + tarea.getPrioridad());
     	System.out.println("Su estado es:" + tarea.getEstado());
     	System.out.println("Su desarrollador a cargo es: " + d.getNombre());
+    	System.out.println("ENTER PARA CONTINUAR");
+    	scanner.InicializarScannerSTR();
     	
     }
 
     public void eliminarTarea(int id) {
         // Invoca a: cambiarDisponibilidad (para liberar al dev asignado)
+    	System.out.println("Ingrese el ID de la tarea que quiera eliminar:");
+    	
+    	
     }
 
     public void actualizarEstado(int id, String nuevoEstado) {
@@ -146,7 +146,7 @@ public class GestorTareas {
             System.out.println("Nombre:"+d.getNombre());
             System.out.println("Ocupado:"+d.getOcupado());
             System.out.println("DNI: " +d.getDni());
-            contador++;
+         contador++;
             aux.Agregar(d);
             conjunto.SacarPorDNI(d.getDni());
      }
@@ -176,17 +176,27 @@ public class GestorTareas {
     }
     
     }
+    
+    
+    
     public static void eliminardevs() {
     	verdevs();
     	System.out.println("Ingrese el dni del desarrollador que quiere eliminar:");
+    	System.out.println("NOTA: DEBE ESTAR DISPONIBLE PARA ELIMINARLO!");
     	int dni = scanner.InicializarScannerINT();
+    	if (conjunto.BuscarPorDNIDisponibilidad(dni)) {
     	conjunto.SacarYNotificar(dni);
+    	}
+    	else {
+    		System.out.println("No existe o puede que este ocupado.");
+    	}
+    	
     
     }
     
 
     public static Desarrollador asignarDesarrolladorATarea(Tarea tarea) {
-        // 1. Inicializamos el auxiliar
+        
         ConjuntoTDA aux = new ConjuntoImplementacionDevs();
         aux.InicializarConjunto(); 
         
@@ -197,10 +207,9 @@ public class GestorTareas {
             conjunto.Sacar(actual);
             
             if (!actual.getOcupado() && devEncontrado == null) {
-                devEncontrado = actual;
-                devEncontrado.setOcupado(true); 
-                tarea.setDev(devEncontrado); }
-            
+              devEncontrado = actual;
+              cambiarDisponibilidad(devEncontrado);
+              tarea.setDev(devEncontrado); }
             
             aux.Agregar(actual); }
         
@@ -213,8 +222,14 @@ public class GestorTareas {
     return devEncontrado; 
  }
 
-    public void cambiarDisponibilidad(String nombreDev, boolean estaOcupado) {
-        // MÉTODO DE APOYO FINAL: Cambia el boolean 'ocupado' en el objeto del Set.
-        // Es invocado por: asignarDesarrolladorATarea, eliminarTarea, TareaCompleta.
+    public static void cambiarDisponibilidad(Desarrollador dev) {
+        // cambia el estado del dev.
+    	boolean estado = dev.getOcupado();
+    	if (estado) {
+    		dev.setOcupado(false);
+    	}
+    	else {
+    		dev.setOcupado(true);
+    	}
     }
 }

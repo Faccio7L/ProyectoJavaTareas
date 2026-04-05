@@ -90,4 +90,29 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
         }
         
     }
+    public boolean BuscarPorDNIDisponibilidad(int dni) {
+    	
+        int i = 0;
+        while (i < cant && devs[i].getDni() != dni) {
+            i++;
+        }
+        
+        
+        if (i < cant) {
+            if (!devs[i].getOcupado()) { 
+                
+                devs[i] = devs[cant - 1];
+                cant--;
+                //EXISTE Y ESTA DISPONIBLE! SE BORRA.
+                return true; 
+            } else {
+                //ESTA OCUPADO!!!
+                return false; 
+            }
+        }
+        
+        //NO SE ENCONTRO!!!1
+        return false; 
+    }
 }
+
