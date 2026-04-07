@@ -39,10 +39,11 @@ public class Menu {
     	while (true) {
         String[] opciones = {
     	        "1. Crear Tarea",
-    	        "2. Eliminar Tarea",
-    	        "3. Actualizar Estado",
-    	        "4. Listar Tareas por Estado",
-    	        "5.Modificar Desarrolladores.",
+    	        "2.Ver Tarea por prioridad",
+    	        "3. Eliminar Tarea",
+    	        "4. Actualizar Estado",
+    	        "5. Listar Tareas por Estado",
+    	        "6.Modificar Desarrolladores.",
     	        "0. Salir"
     	        };
 
@@ -52,7 +53,7 @@ public class Menu {
         
         int seleccion = ObtenerOpcionValida();
         
-        if (seleccion >= 1 && seleccion <= 5) {
+        if (seleccion >= 1 && seleccion <= 6) {
         	
         	gestor.gestionarTareas(seleccion);
         }

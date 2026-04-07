@@ -4,11 +4,19 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
     private Desarrollador[] devs;
     private int cant;
 
+    
+    
+    
+    
     public  void InicializarConjunto() {
         devs = new Desarrollador[100];
         cant = 0;
     }
 
+    
+    
+    
+    
     public void Agregar(Desarrollador d) {
         
         if (!this.Pertenece(d)) {
@@ -23,15 +31,24 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
         	System.out.println("EL DNI ya pertence .No se pudo agregar");
   }
     }
+    
+    
+    
 
     public boolean ConjuntoVacio() {
         return (cant == 0);
     }
+    
+    
+    
 
     public Desarrollador Elegir() {
         // DEVUELVE DE MANERA ARBITRARIA.
         return devs[cant - 1];
     }
+    
+    
+    
 
     public boolean Pertenece(Desarrollador d) {
     	//EVALUA EL DNI!!!
@@ -42,6 +59,8 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
         return (i < cant);
     }
 
+    
+    
     
     public void SacarPorDNI(int dni) {
     	//SE USA PARA SACAR DEVS. SIN ESTRUCTURA AUXILIAR.
@@ -56,6 +75,8 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
             
         }
        
+        
+        
         
     }
     public void Sacar(Desarrollador d) {
@@ -72,6 +93,8 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
             cant--;
       }
     }
+    
+    
     
     public void SacarYNotificar(int dni) {
     	//SE USA NOTIFICAR CAMBIOS EN EL SET, YA QUE PUEDE PASAR COMO NO.
@@ -90,6 +113,8 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
         }
         
     }
+    
+    
     public boolean BuscarPorDNIDisponibilidad(int dni) {
     	
         int i = 0;

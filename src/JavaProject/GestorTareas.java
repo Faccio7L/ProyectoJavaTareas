@@ -1,17 +1,20 @@
 package JavaProject;
 
-
+import java.awt.desktop.OpenFilesEvent;
+import java.awt.dnd.DropTargetAdapter;
+import java.io.ObjectInputStream.GetField;
+import java.security.PublicKey;
+import java.util.concurrent.Flow.Publisher;
 
 public class GestorTareas {
 	
-	ColaPrioridad colaPendientes;
+	static ColaPrioridadTDA cola = new ColaPrioridadImplementacion();
 	static ConjuntoTDA conjunto = new ConjuntoImplementacionDevs(); //se crea conjunto al llamar clase GestorTareas.
 	
 	public GestorTareas() {
 		//CONSTRUCTOR, INICIALIZAMOS DESARROLLADORES,DICCIONARIO Y COLA de MANERA AUTOMATICA.
 		//HARDCODEO DE DESARROLLADORES.
-		this.colaPendientes = new ColaPrioridad();
-		this.colaPendientes.inicializarCola();
+		cola.InicializarCola();;
 		
 		conjunto.InicializarConjunto();
 		
@@ -44,13 +47,56 @@ public class GestorTareas {
 		if (n == 1) {
 		crearTarea();
 		}
-		else if (n==5) {
+		else if(n==2) {
+			seleccionarPorPrioridad();
+		}
+		else if (n==6) {
 		AdministrarDevs();
 		
     }
 }
+	public static void seleccionarPorPrioridad() {
+		while (true) {
+		System.out.println("Ingrese 1 para ver tareas de baja prioridad,2 para ver de prioridad media,3 para ver de prioridad alta.");
+		int op = scanner.InicializarScannerINT();
+		if (op >= 1 && op <= 3) {
+			verPorPrioriedad(op);
+			break;
+		}
+		else {
+			System.out.println("Numero invalido;");
+		
+		
+		
+	}
+		}
+		}
 	
-	
+	public static void verPorPrioriedad(int x) {
+		ColaPrioridadTDA aux = new ColaPrioridadImplementacion();
+		aux.InicializarCola();
+		while (!cola.ColaVacia()) {
+			Tarea t = cola.Primero();
+			
+			cola.Desacolar();
+			if( t.getPrioridad() == x) {
+				
+				mostrartarea(t);
+			}
+			aux.AcolarPrioridad(t, t.getPrioridad());
+			
+			
+		}
+		System.out.println("No quedan mas tareas por mostrar!!!");
+		while(!aux.ColaVacia()) {
+			Tarea t = aux.Primero();
+			aux.Desacolar();
+			cola.AcolarPrioridad(t, t.getPrioridad());
+			
+		}
+		
+		
+	}
 
     public static void crearTarea() {
     	
@@ -79,9 +125,11 @@ public class GestorTareas {
     	else {
     	tarea.setDev(dev);
         mostrartarea(tarea);
+        cola.AcolarPrioridad(tarea, prioridad);
     }}
     
     public static void mostrartarea(Tarea tarea) {
+    	System.out.println("----------------------<>----------------------");
     	Desarrollador d = tarea.getDev(); //tarea tiene como atributo objeto dev, dev tiene como atributo nombre.
     	System.out.println("El nombre de su tarea es: " + tarea.getNombre());
     	System.out.println("SU id es:" + tarea.getId());
@@ -91,8 +139,10 @@ public class GestorTareas {
     	System.out.println("Su desarrollador a cargo es: " + d.getNombre());
     	System.out.println("ENTER PARA CONTINUAR");
     	scanner.InicializarScannerSTR();
-    	
+    	System.out.println("---------------------<>-----------------------");
     }
+    
+    
 
     public void eliminarTarea(int id) {
         // Invoca a: cambiarDisponibilidad (para liberar al dev asignado)
