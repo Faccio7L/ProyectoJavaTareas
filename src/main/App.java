@@ -1,10 +1,9 @@
 package main;
-
-import JavaProject.Menu;
+import JavaProject.*;
 
 public class App {
 
-    public void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception{
 
         var menu = new Menu();
         menu.InicializarMenu();
