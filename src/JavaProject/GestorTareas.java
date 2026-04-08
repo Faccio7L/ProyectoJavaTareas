@@ -50,7 +50,7 @@ public class GestorTareas {
 		crearTarea();
 		}
 		else if(n==2) {
-			seleccionarPorPrioridad();
+		seleccionarPorPrioridad();
 		}
 		else if (n==6) {
 		AdministrarDevs();
@@ -67,12 +67,9 @@ public class GestorTareas {
 		}
 		else {
 			System.out.println("Numero invalido;");
-		
-		
-		
+		}
 	}
-		}
-		}
+}
 	
 	public static void verPorPrioriedad(int x) {
 		ColaPrioridadTDA aux = new ColaPrioridadImplementacion();
@@ -86,20 +83,17 @@ public class GestorTareas {
 				mostrartarea(t);
 			}
 			aux.AcolarPrioridad(t, t.getPrioridad());
-			
-			
 		}
+
 		System.out.println("No quedan mas tareas por mostrar!!!");
 		while(!aux.ColaVacia()) {
 			Tarea t = aux.Primero();
 			aux.Desacolar();
 			cola.AcolarPrioridad(t, t.getPrioridad());
-			
 		}
-		
-		
 	}
 
+	//Opción 1
     public static void crearTarea() {
     	
     	Tarea tarea = new Tarea(); 
@@ -115,12 +109,18 @@ public class GestorTareas {
     	
     	System.out.println("Ingrese una prioridad: 1 baja,2 media, 3 alta");
     	int prioridad = scanner.InicializarScannerINT();
+		while(prioridad<1 || prioridad>3){
+			System.out.println("La prioridad no está en el rango permitido, por favor, inserte un valor válido");
+			System.out.println("Ingrese una prioridad: 1 baja,2 media, 3 alta");
+    		prioridad = scanner.InicializarScannerINT();
+		}
     	if (prioridad >= 1 && prioridad <= 3) {
     		tarea.setPrioridad(prioridad);	
     	}
     	
     	tarea.setEstado("Incompleta");
     	Desarrollador dev = asignarDesarrolladorATarea(tarea);//devolveria el id de dev, lo podriamos hacer con nombre tambien.
+																	//el tema de hacerlo con nombre es que no es único, a lo mejor podemos hacerlo con id y que devuelva el nombre como comprobación, si es que tienen ganas
     	if (dev == null) {
     		System.out.println("No hay desarrolladores disponibles.");
     	}
@@ -129,24 +129,25 @@ public class GestorTareas {
         mostrartarea(tarea);
         cola.AcolarPrioridad(tarea, prioridad);
         diccionario.Agregar(tarea.getId(), tarea);
-    }}
-    
+		}
+	}
+}
+	//Opción 2
     public static void mostrartarea(Tarea tarea) {
     	System.out.println("----------------------<>----------------------");
     	Desarrollador d = tarea.getDev(); //tarea tiene como atributo objeto dev, dev tiene como atributo nombre.
     	System.out.println("El nombre de su tarea es: " + tarea.getNombre());
-    	System.out.println("SU id es:" + tarea.getId());
+    	System.out.println("Su id es:" + tarea.getId());
     	System.out.println("Su descripcion es: " +  tarea.getDescripcion());
-    	System.out.println("SU prioridad es: " + tarea.getPrioridad());
+    	System.out.println("Su prioridad es: " + tarea.getPrioridad());
     	System.out.println("Su estado es:" + tarea.getEstado());
     	System.out.println("Su desarrollador a cargo es: " + d.getNombre());
     	System.out.println("ENTER PARA CONTINUAR");
     	scanner.InicializarScannerSTR();
     	System.out.println("---------------------<>-----------------------");
     }
-    
-    
 
+	//Opción 3
     public void eliminarTarea(int id) {
         // Invoca a: cambiarDisponibilidad (para liberar al dev asignado)
     	System.out.println("Ingrese el ID de la tarea que quiera eliminar:");
@@ -154,19 +155,22 @@ public class GestorTareas {
     	
     }
 
+	//Opción 4
     public void actualizarEstado(int id, String nuevoEstado) {
         // Invoca a: TareaCompleta SOLO SI EL NUEVO ESTADO ES COMPLETADO.
     }
 
-    public void TareaCompleta(int id) {
-        // ELIMINA TAREA.
-        // Invoca a: cambiarDisponibilidad PARA LIBERAR AL DESARROLLADOR.
-    }
-
+	//Opción 5
     public void listarTareasPorEstado(String estado) {
         // USA EL DICT DE TAREAS.
     }
 
+    public void TareaCompleta(int id) {
+    // ELIMINA TAREA.
+    // Invoca a: cambiarDisponibilidad PARA LIBERAR AL DESARROLLADOR.
+	}
+
+	//Opción 6
     							// LOS SIGUIENTES METODOS USA OBJETOS DESARROLLADOR!!!!!!!!!
     public static void AdministrarDevs() {
     	while (true) {
@@ -209,8 +213,8 @@ public class GestorTareas {
             Desarrollador d = aux.Elegir();
             conjunto.Agregar(d);
             aux.SacarPorDNI(d.getDni());
-  }
-  }
+		}
+	}
     public static void agregardevs() {
     Desarrollador dev = new Desarrollador();
     System.out.println("Ingrese el nombre del desarrollador:");
@@ -226,11 +230,8 @@ public class GestorTareas {
     else {
     	conjunto.Agregar(dev);
     	System.out.println("Dev ingresado correctamente!!!");
-    }
-    
-    }
-    
-    
+	}
+}
     
     public static void eliminardevs() {
     	verdevs();
@@ -243,10 +244,7 @@ public class GestorTareas {
     	else {
     		System.out.println("No existe o puede que este ocupado.");
     	}
-    	
-    
     }
-    
 
     public static Desarrollador asignarDesarrolladorATarea(Tarea tarea) {
         
@@ -264,7 +262,8 @@ public class GestorTareas {
               cambiarDisponibilidad(devEncontrado);
               tarea.setDev(devEncontrado); }
             
-            aux.Agregar(actual); }
+            aux.Agregar(actual); 
+		}
         
         while (!aux.ConjuntoVacio()) {
             Desarrollador paraDevolver = (Desarrollador) aux.Elegir();
@@ -273,7 +272,7 @@ public class GestorTareas {
             aux.Sacar(paraDevolver);
         }
     return devEncontrado; 
- }
+}
 
     public static void cambiarDisponibilidad(Desarrollador dev) {
         // cambia el estado del dev.
@@ -284,5 +283,5 @@ public class GestorTareas {
     	else {
     		dev.setOcupado(true);
     	}
-    }
+	}
 }

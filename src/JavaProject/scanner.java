@@ -10,7 +10,6 @@ public class scanner{
     }
     public static String InicializarScannerSTR(){
     	String x = sc.nextLine();
-        sc.nextLine(); 
         return x;
     }
 }
