@@ -10,14 +10,16 @@ public class GestorTareas {
 	
 	static ColaPrioridadTDA cola = new ColaPrioridadImplementacion();
 	static ConjuntoTDA conjunto = new ConjuntoImplementacionDevs(); //se crea conjunto al llamar clase GestorTareas.
-	
+    static DiccionarioSimpleTDA diccionario = new DiccionarioSimpleImplementacion();
 	public GestorTareas() {
 		//CONSTRUCTOR, INICIALIZAMOS DESARROLLADORES,DICCIONARIO Y COLA de MANERA AUTOMATICA.
 		//HARDCODEO DE DESARROLLADORES.
 		cola.InicializarCola();;
 		
 		conjunto.InicializarConjunto();
-		
+
+        diccionario.InicializarDiccionario();
+
 		Desarrollador d1 = new Desarrollador();
         d1.setNombre("Juan");
         d1.setOcupado(false);
@@ -126,6 +128,7 @@ public class GestorTareas {
     	tarea.setDev(dev);
         mostrartarea(tarea);
         cola.AcolarPrioridad(tarea, prioridad);
+        diccionario.Agregar(tarea.getId(), tarea);
     }}
     
     public static void mostrartarea(Tarea tarea) {
