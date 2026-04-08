@@ -131,7 +131,6 @@ public class GestorTareas {
         diccionario.Agregar(tarea.getId(), tarea);
 		}
 	}
-}
 	//Opción 2
     public static void mostrartarea(Tarea tarea) {
     	System.out.println("----------------------<>----------------------");
