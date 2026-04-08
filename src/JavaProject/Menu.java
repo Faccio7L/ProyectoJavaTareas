@@ -4,17 +4,11 @@ package JavaProject;
 
 public class Menu {
 	
-	static GestorTareas gestor = new GestorTareas(); //static para que pueda ser usado  por cualquier metodo .
-	static ConjuntoTDA conjunto = new ConjuntoImplementacionDevs();
+	GestorTareas gestor = new GestorTareas(); //static para que pueda ser usado  por cualquier metodo .
+	ConjuntoTDA conjunto = new ConjuntoImplementacionDevs();
+    int InApp;
     
-   
-    public static void main(String[] args) {
-    	
-        
-    	InicializarMenu();
-    }
-    
-    public static int ObtenerOpcionValida(){ //se invoca desde InicializarMenu.
+    public int ObtenerOpcionValida(){ //se invoca desde InicializarMenu.
         while (true){
             try {
             	
@@ -35,35 +29,36 @@ public class Menu {
         }
     }
 
-    public static void InicializarMenu(){
-    	while (true) {
-        String[] opciones = {
-    	        "1. Crear Tarea",
-    	        "2.Ver Tarea por prioridad",
-    	        "3. Eliminar Tarea",
-    	        "4. Actualizar Estado",
-    	        "5. Listar Tareas por Estado",
-    	        "6.Modificar Desarrolladores.",
-    	        "0. Salir"
-    	        };
+    public Menu() throws Exception{
+        InApp=1;
+        System.out.println((1));
 
-        for (String o: opciones){ 
-    		System.out.println(o);
-    	}
-        
-        int seleccion = ObtenerOpcionValida();
-        
-        if (seleccion >= 1 && seleccion <= 6) {
-        	
-        	gestor.gestionarTareas(seleccion);
-        }
-        
+    }
 
-        
-        else  {//no hace falta un else if por la validacion previa.
-	        System.out.println("Hasta luego!!!!");
-	        break;
-        }
+    public void InicializarMenu(){
+    	while (InApp==1) {
+            String[] opciones={
+                    "1. Crear Tarea",
+                    "2.Ver Tarea por prioridad",
+                    "3. Eliminar Tarea",
+                    "4. Actualizar Estado",
+                    "5. Listar Tareas por Estado",
+                    "6.Modificar Desarrolladores.",
+                    "0. Salir"
+                    };
+
+            for (String o: opciones){ 
+                System.out.println(o);
+            }
+            
+            int seleccion = ObtenerOpcionValida();
+            
+            if (seleccion >= 1 && seleccion <= 6){
+                gestor.gestionarTareas(seleccion);
+            }
+            else{
+                InApp=0;
+            }
         }
     }
 }
