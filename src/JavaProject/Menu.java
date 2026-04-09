@@ -39,11 +39,11 @@ public class Menu {
     	while (InApp==1) {
             String[] opciones={
                     "1. Crear Tarea",
-                    "2.Ver Tarea por prioridad",
-                    "3. Eliminar Tarea",
-                    "4. Actualizar Estado",
-                    "5. Listar Tareas por Estado",
-                    "6.Modificar Desarrolladores.",
+                    "2. Ver Tarea por prioridad",
+                    "3. Eliminar Tarea",                //hacer
+                    "4. Actualizar Estado",             //hacer
+                    "5. Listar Tareas por Estado",      //hacer        
+                    "6. Modificar Desarrolladores.",
                     "0. Salir"
                     };
 
@@ -54,7 +54,7 @@ public class Menu {
             int seleccion = ObtenerOpcionValida();
             
             if (seleccion >= 1 && seleccion <= 6){
-                gestor.gestionarTareas(seleccion);
+                GestorTareas.gestionarTareas(seleccion);
             }
             else{
                 InApp=0;
