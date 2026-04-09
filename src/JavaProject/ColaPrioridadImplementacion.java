@@ -1,44 +1,54 @@
 package JavaProject;
 
-
 public class ColaPrioridadImplementacion implements ColaPrioridadTDA {
-	    Tarea [] elementos;
-	    int[] prioridades;
-	    int indice;
 
-	    public void InicializarCola() {
-	        elementos = new Tarea[100];
-	        prioridades = new int[100];
-	        indice = 0;
-	    }
+    class NodoPrioridad {
+        Tarea info;
+        int prioridad;
+        NodoPrioridad sig;
+    }
 
-	    public void AcolarPrioridad(Tarea t, int prioridad) {
-	        int j = indice;
-	        while (j > 0 && prioridades[j - 1] >= prioridad) {
-	            elementos[j] = elementos[j - 1];
-	            prioridades[j] = prioridades[j - 1];
-	            j--;
-	        }
-	        elementos[j] = t;
-	        prioridades[j] = prioridad;
-	        indice++;
-	    }
+    private NodoPrioridad mayorPrioridad;
 
-	    public void Desacolar() {
-	        indice--;
-	    }
+    public void InicializarCola() {
+        mayorPrioridad = null;
+    }
 
-	    public boolean ColaVacia() {
-	        return (indice == 0);
-	    }
+    public void AcolarPrioridad(Tarea t, int prioridad) {
+        NodoPrioridad nuevo = new NodoPrioridad();
+        nuevo.info = t;
+        nuevo.prioridad = prioridad;
 
-	    public Tarea Primero() {
-	    		
-	        return elementos[indice - 1];
-	    }
+        // si la cola esta vacia o el nuevo tiene mayor prioridad que el primero
+        if (mayorPrioridad == null || prioridad > mayorPrioridad.prioridad) {
+            nuevo.sig = mayorPrioridad;
+            mayorPrioridad = nuevo;
+        } else {
+            NodoPrioridad actual = mayorPrioridad;
+           // si el siguiente existe y su prioridad es mayor o igual avanza
+            while (actual.sig != null && actual.sig.prioridad >= prioridad) {
+                actual = actual.sig;
+            }
+            nuevo.sig = actual.sig;
+            actual.sig = nuevo;
+        }
+    }
 
-	    public int Prioridad() {
-	        return prioridades[indice - 1];
-	    }
+    public void Desacolar() {
+        if (mayorPrioridad != null) {
+            mayorPrioridad = mayorPrioridad.sig;
+        }
+    }
+
+    public boolean ColaVacia() {
+        return mayorPrioridad == null;
+    }
+
+    public Tarea Primero() {
+        return mayorPrioridad.info;
+    }
+
+    public int Prioridad() {
+        return mayorPrioridad.prioridad;
+    }
 }
-
