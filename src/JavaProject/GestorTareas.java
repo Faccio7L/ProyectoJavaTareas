@@ -49,6 +49,9 @@ public class GestorTareas {
 		else if(n==3){
 			eliminarTarea();
 		}
+		else if(n==4){
+			realizarTarea();
+		}
 		else if (n==6) {
 		AdministrarDevs();
 		
@@ -187,13 +190,28 @@ public class GestorTareas {
 	}
 
 	//Opción 4
-    public void actualizarEstado(int id, String nuevoEstado) {
-        // Invoca a: TareaCompleta SOLO SI EL NUEVO ESTADO ES COMPLETADO.
+    public static void  realizarTarea(){
+        Tarea t = cola.Primero();
+		System.out.println("La siguiente tarea es " + t.getNombre() + ".Desea registrarla como completa?");
+		System.out.println("ingrese SI en mayusculas si desea realizar esta accion:");
+		String op = scanner.InicializarScannerSTR();
+		if (op.equals("SI")){
+			cola.Desacolar();
+			System.out.println("Tarea completa con exito.");
+			t.setEstado("Completo");
+			diccionario.Agregar(t.getId(), t); //SE ACTUALIZA ESTADO EN DICT.
+
+
+		}
+		else{
+			return;
+		}
+
     }
 
 	//Opción 5
     public void listarTareasPorEstado(String estado) {
-        // USA EL DICT DE TAREAS.
+        System.out.println("Ingrese 1 si desea ver las tareas incompletas,2 en proceso o 3 para tareas completas.");
     }
 
     public void TareaCompleta(int id) {

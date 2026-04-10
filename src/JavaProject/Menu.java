@@ -39,9 +39,9 @@ public class Menu {
     	while (InApp==1) {
             String[] opciones={
                     "1. Crear Tarea",
-                    "2. Ver Tarea por prioridad",
-                    "3. Eliminar Tarea",                //hacer
-                    "4. Actualizar Estado",             //hacer
+                    "2. Ver Tarea pendientes por prioridad",
+                    "3. Eliminar Tarea",
+                    "4. Realizar tarea",             //hacer
                     "5. Listar Tareas por Estado",      //hacer        
                     "6. Desarrolladores.",
                     "0. Salir"
