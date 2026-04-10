@@ -1,5 +1,4 @@
-package main;
-import JavaProject.*;
+package JavaProject;
 
 public class App {
 

@@ -15,7 +15,7 @@ public class Menu {
                 System.out.println("Seleccione una opción");
                 int num = scanner.InicializarScannerINT();
                 
-                if (num>=0 && num<=5){
+                if (num>=0 && num<=6){
                     return num;
                 }
                 else {
@@ -43,7 +43,7 @@ public class Menu {
                     "3. Eliminar Tarea",                //hacer
                     "4. Actualizar Estado",             //hacer
                     "5. Listar Tareas por Estado",      //hacer        
-                    "6. Modificar Desarrolladores.",
+                    "6. Desarrolladores.",
                     "0. Salir"
                     };
 

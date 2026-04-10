@@ -1,11 +1,5 @@
 package JavaProject;
 
-import java.awt.desktop.OpenFilesEvent;
-import java.awt.dnd.DropTargetAdapter;
-import java.io.ObjectInputStream.GetField;
-import java.security.PublicKey;
-import java.util.concurrent.Flow.Publisher;
-
 public class GestorTareas {
 	
 	static ColaPrioridadTDA cola = new ColaPrioridadImplementacion();
@@ -51,6 +45,9 @@ public class GestorTareas {
 		}
 		else if(n==2) {
 		seleccionarPorPrioridad();
+		}
+		else if(n==3){
+			eliminarTarea();
 		}
 		else if (n==6) {
 		AdministrarDevs();
@@ -147,12 +144,47 @@ public class GestorTareas {
     }
 
 	//Opción 3
-    public void eliminarTarea(int id) {
+    public static void eliminarTarea() {
         // Invoca a: cambiarDisponibilidad (para liberar al dev asignado)
-    	System.out.println("Ingrese el ID de la tarea que quiera eliminar:");
-    	
-    	
-    }
+    	System.out.println("Ingrese el ID de la tarea que quiera eliminar, 0 para retroceder:");
+		int op = scanner.InicializarScannerINT();
+		if (op == 0){
+			return;
+		}
+		else{
+			boolean existe =  buscarEnCola(op);
+			if (existe){
+				diccionario.Eliminar(op);
+			}
+		}
+	}
+
+	public static boolean buscarEnCola(int id) {
+		ColaPrioridadTDA aux = new ColaPrioridadImplementacion();
+		aux.InicializarCola();
+		boolean encontrada = false;
+
+
+		while (!cola.ColaVacia()) {
+			Tarea t = cola.Primero();
+			if (t.getId() == id) {
+				encontrada = true;
+				System.out.println("Eliminando...");
+				Desarrollador dev = t.getDev();
+				System.out.println("Su dev" + dev.getNombre() + "ha sido liberado!!!");
+				cambiarDisponibilidad(dev); // si la encuentra, obtiene su dev y le cambia el estado.
+			}
+			aux.AcolarPrioridad(t, t.getPrioridad());
+			cola.Desacolar();
+		}
+
+		while (!aux.ColaVacia()) {
+			cola.AcolarPrioridad(aux.Primero(), aux.Primero().getPrioridad());
+			aux.Desacolar();
+		}
+
+		return encontrada;
+	}
 
 	//Opción 4
     public void actualizarEstado(int id, String nuevoEstado) {
