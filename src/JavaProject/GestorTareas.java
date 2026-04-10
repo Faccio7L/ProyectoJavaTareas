@@ -190,24 +190,29 @@ public class GestorTareas {
 	}
 
 	//Opción 4
-    public static void  realizarTarea(){
-        Tarea t = cola.Primero();
-		System.out.println("La siguiente tarea es " + t.getNombre() + ".Desea registrarla como completa?");
-		System.out.println("ingrese SI en mayusculas si desea realizar esta accion:");
+	public static void realizarTarea() {
+		Tarea t = cola.Primero();
+
+		System.out.println("La siguiente tarea es " + t.getNombre());
+		System.out.println("SU Estado actual: " + t.getEstado());
+		System.out.println("Ingrese SI EN MAYUSC. para avanzar con la tarea:");
 		String op = scanner.InicializarScannerSTR();
-		if (op.equals("SI")){
-			cola.Desacolar();
-			System.out.println("Tarea completa con exito.");
-			t.setEstado("Completo");
-			diccionario.Agregar(t.getId(), t); //SE ACTUALIZA ESTADO EN DICT.
+		if (op.equals("SI")) {
+
+			if (t.getEstado().equals("Incompleto")) {
+				t.setEstado("En proceso");
+				diccionario.Agregar(t.getId(), t);
+				System.out.println("La tarea paso a estar: EN PROCESO.");
 
 
+			} else if (t.getEstado().equals("En proceso")) {
+				cola.Desacolar();
+				t.setEstado("completo");
+				diccionario.Agregar(t.getId(), t);
+				System.out.println("Tarea COMPLETADA con exito.");
+			}
 		}
-		else{
-			return;
-		}
-
-    }
+	       }
 
 	//Opción 5
     public void listarTareasPorEstado(String estado) {
