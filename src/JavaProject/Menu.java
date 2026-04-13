@@ -42,7 +42,7 @@ public class Menu {
                     "2. Ver Tarea pendientes por prioridad",
                     "3. Eliminar Tarea",
                     "4. Realizar tarea",             //hacer
-                    "5. Listar Tareas por Estado",      //hacer        
+                    "5. Modificar Tarea",      //hacer
                     "6. Desarrolladores.",
                     "0. Salir"
                     };

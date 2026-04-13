@@ -52,6 +52,9 @@ public class GestorTareas {
 		else if(n==4){
 			realizarTarea();
 		}
+        else if(n==5){
+            modificarTarea();
+        }
 		else if (n==6) {
 		AdministrarDevs();
 		
@@ -338,4 +341,97 @@ public class GestorTareas {
     		dev.setOcupado(true);
     	}
 	}
+    public static void modificarTarea() {
+        System.out.println("Ingrese el ID de la tarea que desea modificar, 0 para retroceder:");
+        int id = scanner.InicializarScannerINT();
+        if (id == 0) {
+            return;
+        }
+
+        if (!diccionario.ExisteClave(id)) {
+            System.out.println("No se encontró una tarea con ese ID.");
+            return;
+        }
+
+        Tarea tarea = diccionario.Recuperar(id);
+        boolean prioridadCambiada = false;
+        boolean modificando = true;
+
+        while (modificando) {
+            System.out.println("¿Qué desea modificar?");
+            System.out.println("1. Nombre");
+            System.out.println("2. Descripción");
+            System.out.println("3. Prioridad");
+            System.out.println("4. Desarrollador asignado");
+            System.out.println("0. Finalizar modificación");
+            int op = scanner.InicializarScannerINT();
+
+            if (op == 1) {
+                System.out.println("Nombre actual: " + tarea.getNombre());
+                System.out.println("Ingrese el nuevo nombre:");
+                String nuevoNombre = scanner.InicializarScannerSTR();
+                tarea.setNombre(nuevoNombre);
+                System.out.println("Nombre actualizado.");
+
+            } else if (op == 2) {
+                System.out.println("Descripción actual: " + tarea.getDescripcion());
+                System.out.println("Ingrese la nueva descripción:");
+                String nuevaDesc = scanner.InicializarScannerSTR();
+                tarea.setDescripcion(nuevaDesc);
+                System.out.println("Descripción actualizada.");
+
+            } else if (op == 3) {
+                System.out.println("Prioridad actual: " + tarea.getPrioridad());
+                System.out.println("Ingrese la nueva prioridad: 1 baja, 2 media, 3 alta");
+                int nuevaPrioridad = scanner.InicializarScannerINT();
+                while (nuevaPrioridad < 1 || nuevaPrioridad > 3) {
+                    System.out.println("Valor inválido. Ingrese 1, 2 o 3:");
+                    nuevaPrioridad = scanner.InicializarScannerINT();
+                }
+                tarea.setPrioridad(nuevaPrioridad);
+                prioridadCambiada = true;
+                System.out.println("Prioridad actualizada.");
+
+            } else if (op == 4) {
+                Desarrollador devActual = tarea.getDev();
+                System.out.println("Desarrollador actual: " + devActual.getNombre());
+                Desarrollador nuevoDev = asignarDesarrolladorATarea(tarea);
+                if (nuevoDev == null) {
+                    System.out.println("No hay otros desarrolladores disponibles. Se mantiene el actual.");
+                } else {
+                    cambiarDisponibilidad(devActual);
+                    tarea.setDev(nuevoDev);
+                    System.out.println("Desarrollador cambiado a: " + nuevoDev.getNombre());
+                }
+
+            } else if (op == 0) {
+                modificando = false;
+            } else {
+                System.out.println("Opción inválida.");
+            }
+        }
+
+        diccionario.Agregar(tarea.getId(), tarea);
+
+        if (prioridadCambiada) {
+            ColaPrioridadTDA aux = new ColaPrioridadImplementacion();
+            aux.InicializarCola();
+            while (!cola.ColaVacia()) {
+                Tarea t = cola.Primero();
+                cola.Desacolar();
+                if (t.getId() != id) {
+                    aux.AcolarPrioridad(t, t.getPrioridad());
+                }
+            }
+            aux.AcolarPrioridad(tarea, tarea.getPrioridad());
+            while (!aux.ColaVacia()) {
+                Tarea t = aux.Primero();
+                aux.Desacolar();
+                cola.AcolarPrioridad(t, t.getPrioridad());
+            }
+        }
+
+        mostrartarea(tarea);
+        System.out.println("Tarea modificada con éxito.");
+    }
 }
