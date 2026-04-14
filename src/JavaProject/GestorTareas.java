@@ -115,8 +115,33 @@ public class GestorTareas {
 
 	//Opción 1
     public static void crearTarea() {
-    	
-    	Tarea tarea = new Tarea(); 
+
+    	// Validación fail-fast: verificar si hay al menos un desarrollador disponible
+    	ConjuntoTDA auxValidacion = new ConjuntoImplementacionDevs();
+    	auxValidacion.InicializarConjunto();
+    	boolean hayDisponible = false;
+
+    	while (!conjunto.ConjuntoVacio()) {
+    		Desarrollador d = conjunto.Elegir();
+    		if (!d.getOcupado()) {
+    			hayDisponible = true;
+    		}
+    		conjunto.Sacar(d);
+    		auxValidacion.Agregar(d);
+    	}
+
+    	while (!auxValidacion.ConjuntoVacio()) {
+    		Desarrollador d = auxValidacion.Elegir();
+    		conjunto.Agregar(d);
+    		auxValidacion.Sacar(d);
+    	}
+
+    	if (!hayDisponible) {
+    		System.out.println("No se pueden crear tareas: no hay desarrolladores disponibles en este momento.");
+    		return;
+    	}
+
+    	Tarea tarea = new Tarea();
     	tarea.setId();
     	
     	System.out.println("Ingrese el nombre de la tarea:");
