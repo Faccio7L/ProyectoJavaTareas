@@ -15,7 +15,7 @@ public class Menu {
                 System.out.println("Seleccione una opción");
                 int num = scanner.InicializarScannerINT();
                 
-                if (num>=0 && num<=6){
+                if (num>=0 && num<=7){
                     return num;
                 }
                 else {
@@ -44,6 +44,7 @@ public class Menu {
                     "4. Realizar tarea",             //hacer
                     "5. Modificar Tarea",      //hacer
                     "6. Desarrolladores.",
+                    "7. Ver estado de tarea",
                     "0. Salir"
                     };
 
@@ -53,7 +54,7 @@ public class Menu {
             
             int seleccion = ObtenerOpcionValida();
             
-            if (seleccion >= 1 && seleccion <= 6){
+            if (seleccion >= 1 && seleccion <= 7){
                 GestorTareas.gestionarTareas(seleccion);
             }
             else{

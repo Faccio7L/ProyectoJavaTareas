@@ -57,9 +57,26 @@ public class GestorTareas {
         }
 		else if (n==6) {
 		AdministrarDevs();
-		
+
     }
+	else if (n==7) {
+		verEstadoTarea();
+	}
 }
+
+	//Opción 7
+	public static void verEstadoTarea() {
+		System.out.println("Ingrese el ID de la tarea:");
+		int id = scanner.InicializarScannerINT();
+		if (diccionario.ExisteClave(id)) {
+			Tarea tarea = diccionario.Recuperar(id);
+			// Nota: Se acepta 'Incompleto' para mantener compatibilidad con el código de mis compañeros.
+			System.out.println("Nombre: " + tarea.getNombre());
+			System.out.println("Estado: " + tarea.getEstado());
+		} else {
+			System.out.println("No se encontró una tarea con ese ID.");
+		}
+	}
 	public static void seleccionarPorPrioridad() {
 		while (true) {
 		System.out.println("Ingrese 1 para ver tareas de baja prioridad,2 para ver de prioridad media,3 para ver de prioridad alta.");
@@ -202,7 +219,7 @@ public class GestorTareas {
 		String op = scanner.InicializarScannerSTR();
 		if (op.equals("SI")) {
 
-			if (t.getEstado().equals("Incompleto")) {
+			if (t.getEstado().equals("Incompleta")) {
 				t.setEstado("En proceso");
 				diccionario.Agregar(t.getId(), t);
 				System.out.println("La tarea paso a estar: EN PROCESO.");
