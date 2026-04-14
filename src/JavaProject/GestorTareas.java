@@ -219,7 +219,7 @@ public class GestorTareas {
 				encontrada = true;
 				System.out.println("Eliminando...");
 				Desarrollador dev = t.getDev();
-				System.out.println("Su dev" + dev.getNombre() + "ha sido liberado!!!");
+				System.out.println("Su dev " + dev.getNombre() + " ha sido liberado!!!");
 				cambiarDisponibilidad(dev); // si la encuentra, obtiene su dev y le cambia el estado.
 			}
 			aux.AcolarPrioridad(t, t.getPrioridad());
@@ -236,10 +236,14 @@ public class GestorTareas {
 
 	//Opción 4
 	public static void realizarTarea() {
+		if (cola.ColaVacia()) {
+			System.out.println("No hay tareas pendientes.");
+			return;
+		}
 		Tarea t = cola.Primero();
 
 		System.out.println("La siguiente tarea es " + t.getNombre());
-		System.out.println("SU Estado actual: " + t.getEstado());
+		System.out.println("Su Estado actual: " + t.getEstado());
 		System.out.println("Ingrese SI EN MAYUSC. para avanzar con la tarea:");
 		String op = scanner.InicializarScannerSTR();
 		if (op.equals("SI")) {
@@ -251,18 +255,21 @@ public class GestorTareas {
 
 
 			} else if (t.getEstado().equals("En proceso")) {
+				Desarrollador dev=t.getDev();
+				cambiarDisponibilidad(dev);
 				cola.Desacolar();
 				t.setEstado("completo");
 				diccionario.Agregar(t.getId(), t);
 				System.out.println("Tarea COMPLETADA con exito.");
 			}
 		}
-	       }
+	}
 
 	//Opción 5
-    public void listarTareasPorEstado(String estado) {
+    /*public void listarTareasPorEstado(String estado) {
         System.out.println("Ingrese 1 si desea ver las tareas incompletas,2 en proceso o 3 para tareas completas.");
     }
+	*/
 
     public void TareaCompleta(int id) {
     // ELIMINA TAREA.
@@ -383,6 +390,7 @@ public class GestorTareas {
     		dev.setOcupado(true);
     	}
 	}
+//opcion 5
     public static void modificarTarea() {
         System.out.println("Ingrese el ID de la tarea que desea modificar, 0 para retroceder:");
         int id = scanner.InicializarScannerINT();
@@ -477,3 +485,5 @@ public class GestorTareas {
         System.out.println("Tarea modificada con éxito.");
     }
 }
+
+//opcion 3

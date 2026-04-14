@@ -31,8 +31,6 @@ public class Menu {
 
     public Menu() throws Exception{
         InApp=1;
-        System.out.println((1));
-
     }
 
     public void InicializarMenu(){
@@ -41,8 +39,8 @@ public class Menu {
                     "1. Crear Tarea",
                     "2. Ver Tarea pendientes por prioridad",
                     "3. Eliminar Tarea",
-                    "4. Realizar tarea",             //hacer
-                    "5. Modificar Tarea",      //hacer
+                    "4. Realizar tarea",
+                    "5. Modificar Tarea",
                     "6. Desarrolladores.",
                     "7. Ver estado de tarea",
                     "0. Salir"
