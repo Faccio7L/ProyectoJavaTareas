@@ -265,11 +265,7 @@ public class GestorTareas {
 		}
 	}
 
-	//Opción 5
-    /*public void listarTareasPorEstado(String estado) {
-        System.out.println("Ingrese 1 si desea ver las tareas incompletas,2 en proceso o 3 para tareas completas.");
-    }
-	*/
+
 
     public void TareaCompleta(int id) {
     // ELIMINA TAREA.
@@ -404,6 +400,7 @@ public class GestorTareas {
         }
 
         Tarea tarea = diccionario.Recuperar(id);
+		mostrartarea(tarea);
         boolean prioridadCambiada = false;
         boolean modificando = true;
 
@@ -438,10 +435,15 @@ public class GestorTareas {
                     System.out.println("Valor inválido. Ingrese 1, 2 o 3:");
                     nuevaPrioridad = scanner.InicializarScannerINT();
                 }
-                tarea.setPrioridad(nuevaPrioridad);
-                prioridadCambiada = true;
-                System.out.println("Prioridad actualizada.");
-
+				if (tarea.getPrioridad() == nuevaPrioridad){
+					System.out.println("Esa prioridad ya esta asignada!!");
+				}
+				//validacion para evitar reacolar una misma tarea(puede perder prioridad!!!)
+				else {
+					tarea.setPrioridad(nuevaPrioridad);
+					prioridadCambiada = true;
+					System.out.println("Prioridad actualizada.");
+				}
             } else if (op == 4) {
                 Desarrollador devActual = tarea.getDev();
                 System.out.println("Desarrollador actual: " + devActual.getNombre());
