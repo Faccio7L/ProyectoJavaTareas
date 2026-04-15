@@ -1,4 +1,6 @@
-package JavaProject;
+package main;
+
+import JavaProject.Menu;
 
 public class App {
 
