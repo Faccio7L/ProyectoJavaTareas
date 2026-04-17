@@ -5,9 +5,7 @@ public class ConjuntoImplementacionDevs implements ConjuntoTDA {
     private Desarrollador[] devs;
     private int cant;
 
-    public int getCant() {
-        return cant;
-    }
+    
 
     public void InicializarConjunto() {
         devs = new Desarrollador[100];
