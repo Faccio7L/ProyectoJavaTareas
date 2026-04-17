@@ -7,23 +7,27 @@ public class DiccionarioSimpleImplementacion implements DiccionarioSimpleTDA {
     private int cant;
 
     public void InicializarDiccionario() {
-        claves = new int[100];
-        valores = new Tarea[100];
+        claves = new int[500];
+        valores = new Tarea[500];
         cant = 0;
     }
 
     public void Agregar(int clave, Tarea valor) {
         // Si la clave ya existe, reemplaza el valor
-        int i = indiceDeClave(clave);
-        if (i >= 0) {
-            valores[i] = valor;
-        } else {
-            // Clave nueva
-            claves[cant] = clave;
-            valores[cant] = valor;
-            cant++;
+        if (cant < 500) {
+            int i = indiceDeClave(clave);
+            if (i >= 0) {
+                valores[i] = valor;
+            } else {
+                // Clave nueva
+                claves[cant] = clave;
+                valores[cant] = valor;
+                cant++;
+            }
         }
+        else{System.out.println("LLego al limite de tareas!!!");}
     }
+
 
     public void Eliminar(int clave) {
         int i = indiceDeClave(clave);
@@ -51,13 +55,9 @@ public class DiccionarioSimpleImplementacion implements DiccionarioSimpleTDA {
         return resultado;
     }
 
-    public boolean ExisteClave(int clave) {
-        return indiceDeClave(clave) >= 0;
-    }
 
-    public boolean DiccionarioVacio() {
-        return cant == 0;
-    }
+
+
 
     // Metodo auxiliar privado: busca el indice de una clave, devuelve -1 si no existe
     private int indiceDeClave(int clave) {

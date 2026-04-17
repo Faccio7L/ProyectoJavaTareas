@@ -55,7 +55,9 @@ public class GestorTareas {
             aux.Sacar(d);
             conj.Agregar(d);
         }
+
     }
+
 
     /**
      * Busca un dev por DNI. Si existe y está disponible (no ocupado),
@@ -117,7 +119,7 @@ public class GestorTareas {
     public static void verEstadoTarea() {
         System.out.println("Ingrese el ID de la tarea:");
         int id = scanner.InicializarScannerINT();
-        if (diccionario.ExisteClave(id)) {
+        if (diccionario.Recuperar(id) != null) {
             Tarea tarea = diccionario.Recuperar(id);
             System.out.println("Nombre: " + tarea.getNombre());
             System.out.println("Estado: " + tarea.getEstado());
@@ -422,7 +424,7 @@ public class GestorTareas {
         if (id == 0) {
             return;
         }
-        if (!diccionario.ExisteClave(id)) {
+        if (diccionario.Recuperar(id) == null){
             System.out.println("No se encontró una tarea con ese ID.");
             return;
         }

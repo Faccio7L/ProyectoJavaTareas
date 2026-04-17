@@ -36,11 +36,5 @@ public interface DiccionarioSimpleTDA {
      * Verifica si existe una clave en el diccionario.
      * Precondicion: inicializado.
      */
-    public boolean ExisteClave(int clave);
 
-    /**
-     * Verifica si el diccionario esta vacio.
-     * Precondicion: inicializado.
-     */
-    public boolean DiccionarioVacio();
 }
