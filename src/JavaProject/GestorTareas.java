@@ -43,21 +43,22 @@ public class GestorTareas {
      * Busca un dev por DNI. Si existe y está disponible (no ocupado),
      * lo saca del conjunto y retorna true. Si no existe o está ocupado, retorna false.
      */
-    private static boolean buscarDisponiblePorDNI(ConjuntoTDA conj, int dni) {
+    private static void buscarDisponiblePorDNI(ConjuntoTDA conj, int dni) {
         //METODO PARA ELIMINAR DEVS EN CASO DE QUE ESTEN LIBRES.
         ConjuntoTDA aux = new ConjuntoImplementacionDevs();
         aux.InicializarConjunto();
-        boolean disponible = false;
+
 
         while (!conj.ConjuntoVacio()) {
             Desarrollador d = conj.Elegir();
             conj.Sacar(d);
-            aux.Agregar(d);
+
             if (d.getDni() == dni) {
                 if (!d.getOcupado()) {
-                    disponible = true;
+                    System.out.println("Eliminado del conjunto!!");
                     // No se reactiva: queda eliminado del conjunto
                 } else {
+                    System.out.println("Su estado es: OCUPADO, no puede eliminarse.");
                     aux.Agregar(d); // Está ocupado, se mantiene
                 }
             } else {
@@ -69,7 +70,7 @@ public class GestorTareas {
             aux.Sacar(d);
             conj.Agregar(d);
         }
-        return disponible;
+
     }
 
     // ---------------------------------------------------------------
@@ -357,11 +358,7 @@ public class GestorTareas {
         if (dni == 0) {
             System.out.println("Operación cancelada.");
             return;}
-            if (buscarDisponiblePorDNI(conjunto, dni)) {
-                System.out.println("Dev eliminado con exito!!!");
-            } else {
-                System.out.println("No existe o puede que este ocupado.");
-            }
+        buscarDisponiblePorDNI(conjunto,dni);
         }
 
 
