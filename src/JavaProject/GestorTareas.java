@@ -36,27 +36,7 @@ public class GestorTareas {
     // MÉTODOS AUXILIARES PRIVADOS (lógica que antes estaba en el TDA)
     // ---------------------------------------------------------------
 
-    /**
-     * Saca un desarrollador del conjunto buscándolo por DNI.
-     * Usa estructura auxiliar para recorrer el conjunto.
-     */
-    private static void sacarDeConjuntoPorDNI(ConjuntoTDA conj, int dni) {
-        ConjuntoTDA aux = new ConjuntoImplementacionDevs();
-        aux.InicializarConjunto();
-        while (!conj.ConjuntoVacio()) {
-            Desarrollador d = conj.Elegir();
-            conj.Sacar(d);
-            if (d.getDni() != dni) {
-                aux.Agregar(d);
-            }
-        }
-        while (!aux.ConjuntoVacio()) {
-            Desarrollador d = aux.Elegir();
-            aux.Sacar(d);
-            conj.Agregar(d);
-        }
 
-    }
 
 
     /**
@@ -64,6 +44,7 @@ public class GestorTareas {
      * lo saca del conjunto y retorna true. Si no existe o está ocupado, retorna false.
      */
     private static boolean buscarDisponiblePorDNI(ConjuntoTDA conj, int dni) {
+        //METODO PARA ELIMINAR DEVS EN CASO DE QUE ESTEN LIBRES.
         ConjuntoTDA aux = new ConjuntoImplementacionDevs();
         aux.InicializarConjunto();
         boolean disponible = false;
@@ -71,6 +52,7 @@ public class GestorTareas {
         while (!conj.ConjuntoVacio()) {
             Desarrollador d = conj.Elegir();
             conj.Sacar(d);
+            aux.Agregar(d);
             if (d.getDni() == dni) {
                 if (!d.getOcupado()) {
                     disponible = true;
@@ -305,10 +287,7 @@ public class GestorTareas {
         }
     }
 
-    public void TareaCompleta(int id) {
-        // ELIMINA TAREA.
-        // Invoca a: cambiarDisponibilidad PARA LIBERAR AL DESARROLLADOR.
-    }
+
 
     // ---------------------------------------------------------------
     // OPCIÓN 6
