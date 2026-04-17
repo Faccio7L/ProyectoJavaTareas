@@ -1,16 +1,31 @@
 package JavaProject;
+
 public interface ConjuntoTDA {
-	
+
     void InicializarConjunto();
+    /**
+     * __tiene__ __que__ __estar__ __inicializada__
+     */
+
     void Agregar(Desarrollador d);
-    Desarrollador Elegir();
-    boolean ConjuntoVacio();
-    void Sacar(Desarrollador d);
-    void SacarYNotificar(int dni);
-    void SacarPorDNI(int dni);
+    /**
+     * __tiene__ __que__ __estar__ __inicializada__
+     */
+
     boolean Pertenece(Desarrollador d);
-    boolean BuscarPorDNIDisponibilidad(int dni);
-   
+    /**
+     * __tiene__ __que__ __estar__ __inicializada__
+     */
+
+    void Sacar(Desarrollador d);
+    /**
+     * no __tiene__ __que__ __estar__ __vacío__
+     */
+
+    Desarrollador Elegir();
+    /**
+     * __tiene__ __que__ __estar__ __inicializada__
+     */
+
+    boolean ConjuntoVacio();
 }
-
-
