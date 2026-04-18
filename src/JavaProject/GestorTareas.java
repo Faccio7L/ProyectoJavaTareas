@@ -277,14 +277,14 @@ public class GestorTareas {
         if (t.getEstado().equals("Incompleta")) {
             t.setEstado("En proceso");
             diccionario.Agregar(t.getId(), t);
-            System.out.println("La tarea paso a estar: EN PROCESO.");
+            System.out.println("La tarea"+ t.getNombre() +" paso a estar: EN PROCESO.");
         } else if (t.getEstado().equals("En proceso")) {
             Desarrollador dev = t.getDev();
             cambiarDisponibilidad(dev);
             cola.Desacolar();
             t.setEstado("completo");
             diccionario.Agregar(t.getId(), t);
-            System.out.println("Tarea COMPLETADA con exito.");
+            System.out.println("Tarea" + t.getNombre() +" COMPLETADA con exito.");
         }
     }
 
