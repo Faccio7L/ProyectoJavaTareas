@@ -4,27 +4,27 @@ public interface ConjuntoTDA {
 
     void InicializarConjunto();
     /**
-     * __tiene__ __que__ __estar__ __inicializada__
+     * tiene que estar inicializada
      */
 
     void Agregar(Desarrollador d);
     /**
-     * __tiene__ __que__ __estar__ __inicializada__
+     * tiene que estar inicializada
      */
 
     boolean Pertenece(Desarrollador d);
     /**
-     * __tiene__ __que__ __estar__ __inicializada__
+     * tiene que estar inicializada
      */
 
     void Sacar(Desarrollador d);
     /**
-     * no __tiene__ __que__ __estar__ __vacío__
+     * no tiene que estar vacío
      */
 
     Desarrollador Elegir();
     /**
-     * __tiene__ __que__ __estar__ __inicializada__
+     * tiene que estar inicializada
      */
 
     boolean ConjuntoVacio();

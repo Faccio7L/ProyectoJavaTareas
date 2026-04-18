@@ -406,6 +406,10 @@ public class GestorTareas {
         }
 
         Tarea tarea = diccionario.Recuperar(id);
+        if (tarea.getEstado().equals("completo")){
+            System.out.println("La tarea esta completa, no se puede editar.");
+            return;
+        }
         mostrartarea(tarea);
         boolean prioridadCambiada = false;
         boolean modificando = true;
