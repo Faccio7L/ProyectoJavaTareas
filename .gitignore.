@@ -1,0 +1,17 @@
+# Archivos de compilación de Java
+*.class
+bin/
+out/
+classes/
+
+# Configuración de IntelliJ IDEA
+.idea/
+*.iml
+
+# Configuración de Eclipse
+.settings/
+.classpath
+.project
+
+# Otros archivos temporales
+.DS_Store
