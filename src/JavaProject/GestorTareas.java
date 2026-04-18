@@ -455,10 +455,12 @@ public class GestorTareas {
                 Desarrollador nuevoDev = asignarDesarrolladorATarea(tarea);
                 if (nuevoDev == null) {
                     System.out.println("No hay otros desarrolladores disponibles. Se mantiene el actual.");
-                } else {
+                } else if (nuevoDev.getDni() != devActual.getDni()) {
                     cambiarDisponibilidad(devActual);
                     tarea.setDev(nuevoDev);
                     System.out.println("Desarrollador cambiado a: " + nuevoDev.getNombre());
+                } else {
+                    System.out.println("Se reasignó al mismo desarrollador por falta de otros disponibles.");
                 }
 
             } else if (op == 0) {
